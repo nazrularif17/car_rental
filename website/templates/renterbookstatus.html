@@ -1,0 +1,137 @@
+{% extends 'header.html' %}
+{% block content %}
+<style>
+    html, body {
+      min-height: 100%;
+      }
+      h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #fff;
+      }
+      .testbox {
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      width: 90%;
+      margin: 10px;
+      margin-left: 5%;
+      border-radius: 6px;
+      box-shadow: 0 0 20px 0 #333; 
+      }
+      .banner {
+      position: relative;
+      height: 150px;
+      background: linear-gradient(135deg,#7f1734, #bc1a1a);   
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 0 20px 0 #333; 
+      }
+      .banner::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      .detail-top {
+        display: flex;
+
+      }
+      h2 {
+        text-align: center;
+        font-size: 25px;
+        margin: 20px;
+      }
+      p {
+        font-size: 20px;
+        font-weight: 600;
+        margin-left: 3%;
+        padding-left: 2%;
+        margin-right: 3%;
+        padding-right: 2%;
+        color: #333;
+        margin-bottom: 10px;
+        border: 2px solid #7f1734;
+      }
+      .book-detail {
+        margin: 20px;
+        width: 50%;
+        box-shadow: 0 0 20px 0 #333;
+      }
+      .rent-detail {
+        margin: 20px;
+        width: 50%;
+        box-shadow: 0 0 20px 0 #333;
+      }
+      .car-detail {
+        margin: 20px;
+        box-shadow: 0 0 20px 0 #333;
+      }
+      .car-detail h2 {
+        padding-top: 20px;
+      }
+      .car-detail2 {
+        display: flex;
+      }
+      img {
+        box-shadow: 0 0 20px 0 #333;
+        width: 90%;
+        padding: 2%;
+        padding-top: 0;
+        margin: 3%;
+        margin-top: 0;
+        margin-left: 2%;
+      }
+      .car-right {
+        width: 100%;
+      }
+</style>
+<body>
+    <div class="testbox">
+        {% if booking %}
+        <div class="banner">
+            <h1>Booking Status</h1>
+        </div>
+        <div class="detail-top">
+            <div class="book-detail">
+                <h2>Booking Details</h2>
+                <p>Booking ID: {{ booking.BookID }}</p>
+                <p>Booking Date: {{ booking.BookDate }}</p>
+                <p>Return Date: {{ booking.ReturnDate }}</p>
+                <p>Total Price: {{ booking.TotalPrice }}</p>
+                <p>Booking Status: {{ booking.BookStatus }}</p>
+            </div>
+            <div class="rent-detail">
+                <h2>Renter Details</h2>
+                <p>Renter ID: {{ renter.RentID }}</p>
+                <p>Renter Name: {{ renter.RentName }}</p>
+                <p>Renter Phone Number: {{ renter.RentPhonenum }}</p>
+                <p>Renter Email: {{ renter.RentEmail }}</p>
+                <p>Renter Gender: {{ renter.RentGender }}</p>
+                <p>Renter License: {{ renter.RentLicense }}</p>
+            </div>
+        </div>
+        <div class="car-detail">
+            <h2>Car Details</h2>
+            <div class="car-detail2">
+                <div class="car-left">
+                    <img src="{{ booking.CarPlatenum.CarImg.url }}">
+                </div>
+                <div class="car-right">
+                    <p>Car Plate Number: {{ booking.CarPlatenum.CarPlatenum }}</p>
+                    <p>Car Model: {{ booking.CarPlatenum.CarModel }}</p>
+                    <p>Number of passenger: {{ booking.CarPlatenum.NumofPassenger }}</p>
+                    <p>Car Price: RM{{ booking.CarPlatenum.CarPrice }}/days</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <p>No booking available.</p>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

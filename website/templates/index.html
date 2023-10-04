@@ -1,0 +1,639 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+  <!-- css -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root{
+    --claret:#7f1734;
+    --maroon:#800000;
+    --black:#130f40;
+    --light-color:#1C2833 ;
+    --dark:#E5E8E8;
+    --white:#fff;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+    --border:.2rem solid rgba(0,0,0,.1);
+    --outline:.1rem solid #7f1734;
+    --outline-hover:.2rem solid var(--maroon);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body{
+    background:#fff;
+}
+
+section{
+    padding:2rem 9%;
+}
+
+.heading{
+    text-align: center;
+    padding:2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.5rem;
+    color:var(--white);
+}
+
+.heading span{
+    color: var(--maroon);
+    
+    display: inline-block;
+    padding:.5rem 3rem;
+    
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding:.8rem 3rem;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    border:.2rem solid var(--black);
+    color:var(--maroon);
+    cursor: pointer;
+    background: none;
+}
+
+.btn:hover{
+    background: var(--black);
+    color:#fff;
+}
+
+.header{
+    position: fixed;
+    top:0; left:0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2rem 9%;
+    background:#7f1734;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color:var(--white);
+}
+
+.header .logo i{
+    color:var(--white);
+}
+
+.header .navbar a{
+    font-size: 1.7rem;
+    margin:0 1rem;
+    color:var(--white);
+}
+
+.header .navbar a:hover{
+    color:var(--light-color);
+}
+
+.header .icons div{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: .5rem;
+    background: #eee;
+    color:var(--maroon);
+    font-size: 2rem;
+    margin-left: .3rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.header .icons div:hover{
+    background: var(--light-color);
+    color:#fff;
+}
+
+#menu-btn{
+    display: none;
+}
+
+.header .search-form{
+    position: absolute;
+    top:110%; right:-110%;
+    width: 50rem;
+    height:5rem;
+    background: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+
+.header .search-form.active{
+    right:2rem;
+    transition: .4s linear;
+}
+
+.header .search-form input{
+    height:100%;
+    width:100%;
+    background: none;
+    text-transform: none;
+    font-size: 1.6rem;
+    color:var(--black);
+    padding:0 1.5rem;
+}
+
+.header .search-form label{
+    font-size: 2.2rem;
+    padding-right: 1.5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+.header .search-form label:hover{
+    color:var(--maroon);
+
+}
+.header .login-form{
+    position: absolute;
+    top:110%; right: -110%;
+    width: 35rem;
+    box-shadow: var(--box-shadow);
+    padding:2rem;
+    border-radius: .5rem;
+    background: #fff;
+    text-align: center;
+}
+.header .login-form.active{
+    right: 2rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+.header .login-form .box{
+    width: 100%;
+    margin: .7rem 0;
+    background: #eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    text-transform: none;
+}
+.header .login-form p{
+    font-size: 1.4rem;
+    padding: .5rem 0;
+    color: var(--light-color);
+}
+.header .login-form p a {
+    color: var(--maroon);
+    text-decoration: underline;
+}
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(https://i.pinimg.com/originals/60/84/cb/6084cbf22f971691e760ebc24f3a6659.gif) no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+}
+.home .content{
+    text-align: center;
+    width: 60rem;
+}
+.home .content h3{
+    color: var(--white);
+    font-size: 3rem;
+    text-shadow: #666;
+}
+.home .content h3 span{
+    color:var(--maroon);
+}
+.home .content p{
+    color: var(--white);
+    font-size: 1.7rem;
+    padding: 1rem 0;
+    line-height: 1.8;
+}
+.features .box-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.features .box-container .box {
+  padding: 3rem 2rem;
+  background: #fff;
+  outline: var(--outline);
+  outline-offset: -1rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.features .box-container .box:hover {
+  background: var(--dark);
+  outline-offset: 0rem;
+}
+
+.features .box-container .box img {
+  margin: 1rem 0;
+  height: 15rem;
+}
+
+.features .box-container .box h3 {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: var(--black);
+}
+
+.features .box-container .box p {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: var(--light-color);
+  padding: 1rem 0;
+}
+
+
+.categories .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+    gap: 1.5rem;
+}
+.categories .box-container .box{
+    padding: 3rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+}
+
+.categories .box-container .box:hover{
+    background: var(--dark);
+    outline-offset: 0rem;
+}
+
+.categories .box-container .box img{
+    margin: 1rem 0;
+    width: 200px;
+    height: 100px;
+
+}
+.categories .box-container .box h3{
+    font-size: 2rem;
+    color:var(--black);
+    line-height: 1.8;
+}
+.categories .box-container .box p{
+    font-size: 1.7rem;
+    color:var(--light-color);
+    line-height: 1.8;
+    padding: 1rem;
+}
+.footer {
+    background: #7f1734;
+}
+.footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    color: var(--white);
+    padding: 1rem 0;
+}
+.footer .box-container .box h3 i{
+    color:var(--white);
+}
+.footer .box-container .box .links{
+    display: block;
+    font-size: 1.5rem;
+    color:var(--white);
+    padding:1rem 0;
+}
+.footer .box-container .box .links i{
+    color: var(--white);
+    padding-right: .5rem;
+}
+.footer .box-container .box .links:hover i{
+    padding-right: 2rem;
+}
+.footer .box-container .box p{
+    line-height: 1.8;
+    font-size: 1.5rem;
+    color:var(--white);
+    padding: 1rem 0;
+}
+.footer .box-container .box  .share a{
+    height: 4rem;
+    width: 4rem;
+    line-height: 4rem;
+    border-radius: .5rem;
+    font-size:2rem;
+    color: var(--maroon);
+    margin-right: .2rem;
+    background: #eee;
+    text-align: center;
+}
+.footer .box-container .box  .share a:hover{
+    background: var(--white);
+    color: #fff;
+}
+.footer .box-container .box .email{
+    width: 100%;
+    margin: .7rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background: #eee;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+}
+
+/* media queries  */
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+
+    .header{
+        padding:2rem;
+    }
+
+    section{
+        padding:2rem;
+    }
+
+}
+
+@media (max-width:768px){
+
+    #menu-btn{
+        display: inline-block;
+    }
+
+    .header .search-form{
+        width:90%;
+    }
+
+    .header .navbar{
+        position: absolute;
+        top:110%; right:-110%;
+        width:30rem;
+        box-shadow: var(--box-shadow);
+        border-radius: .5rem;
+        background: #fff;
+    }
+
+    .header .navbar.active{
+        right:2rem;
+        transition: .4s linear;
+    }
+
+    .header .navbar a{
+        font-size: 2rem;
+        margin:2rem 2.5rem;
+        display: block;
+    }
+
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+
+    .heading{
+        font-size: 2.5rem;
+    }
+
+    .footer{
+        text-align: center;
+    }
+
+    .footer .box-container .box .payment-img{
+        margin: 2rem auto;
+    }
+
+}
+    </style>
+
+</head>
+<body>
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>Drive the <span>distance</span> make memories</h3>
+        <p>Rent a car, discover the best of college life</p>
+        <a href="{% url 'carlist' %}" class="btn"style="color: white;"> View Car</a>
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- step section starts  -->
+
+<section class="features" id="features">
+
+    <h1 class="heading"><span> Get started with 4 simple steps </span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="https://www.pngall.com/wp-content/uploads/5/Profile.png" alt="">
+            <h3>Create a profile</h3>
+            <p>Sign up or register as a user on the car rental college system. Provide the required information such as your name, student ID, contact details, email, and gender. </p>
+        </div>
+
+        <div class="box">
+            <img src="https://unitedhomeins.com/wp-content/uploads/2018/11/car-icon-768x768.png" alt="">
+            <h3>Make the car selection</h3>
+            <p>Browse and choose the car you want to rent, considering its specifications, availability, and rental policies to ensure it meets your needs and preferences.</p>
+        </div>
+
+        <div class="box">
+            <img src="https://cdn2.iconfinder.com/data/icons/travel-152/48/91-512.png" alt="">
+            <h3>Booking the car</h3>
+            <p>Book the car by selecting the desired rental dates and duration, and provide any necessary additional information, such as the purpose of the booking.</p>
+        </div>
+
+        <div class="box">
+            <img src="https://cdn.picpng.com/icon/icon-symbol-confirmation-hook-70856.png" alt="">
+            <h3>Make a confirmation</h3>
+            <p>Review the rental terms, including duration and any additional requirements or charges. If satisfactory, proceed to confirm your reservation.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- step section ends -->
+
+<!-- categories section starts here -->
+    <section class="categories" id="categories">
+        <h1 class="heading"><span>Car Brands</span></h1>
+        <div class="box-container">
+
+            <div class="box">
+                <img src="https://www.carlogos.org/logo/Proton-logo-2008-1366x768.png" alt="">
+                <h3>Proton</h3>
+            </div>
+            <div class="box">
+                <img src="https://www.carlogos.org/logo/Perodua-logo-2008-2560x1440.png" alt="">
+                <h3>Perodua</h3>
+            </div>
+            <div class="box">
+                <img src="http://www.pngall.com/wp-content/uploads/2016/04/Toyota-Logo-PNG-Clipart.png" alt="">
+                <h3>Toyota</h3>
+            </div>
+            <div class="box">
+                <img src="http://pngimg.com/uploads/nissan/nissan_PNG88.png" alt="">
+                <h3>Nissan</h3>
+            </div>
+
+        </div>
+    </section>
+<!-- categories section ends here -->
+
+<!--footer section starts here..-->
+
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h3> CarRent KPMB <i class="fas fa-car"></i></h3>
+            <p>Find and book affordable rental cars for your college adventures. 
+                CarRent KPMB Booking System offers a wide selection of vehicles, 
+                making your travels convenient and enjoyable.
+            </p>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Contact info</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"> 03 876 68935 </i></a>
+            <a href="#" class="links"> <i class="fas fa-envelope"> info@beranang.kpm.edu.my </i></a>
+            <a href="#" class="links"> <i class="fas fa-map-marker-alt"> KPM Beranang, Lot 2333, Jalan Kajang/Seremban, 43700 Beranang, Selangor </i></a>
+        </div>
+
+        <div class="box">
+            <h3>Newsletter</h3>
+           <p>Subscribe for the latest updates</p>
+           <input type="email" class="email" placeholder="your email">
+           <input type="submit" class="btn" value="Subscribe"style="color: white;">
+        </div>
+
+    </div>
+</section>
+<!--footer section ends here..-->
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script>
+    let searchForm = document.querySelector('.search-form');
+
+document.querySelector('#search-btn').onclick = () =>{
+    searchForm.classList.toggle('active');
+    shoppingCart.classList.remove('active');
+    loginForm.classList.remove('active');
+    navbar.classList.remove('active');
+
+}
+
+let loginForm = document.querySelector('.login-form');
+
+document.querySelector('#login-btn').onclick = () =>{
+    loginForm.classList.toggle('active');
+    searchForm.classList.remove('active');
+    shoppingCart.classList.remove('active');
+    navbar.classList.remove('active');
+}
+
+let navbar = document.querySelector('.navbar');
+
+document.querySelector('#menu-btn').onclick = () =>{
+    navbar.classList.toggle('active');
+    searchForm.classList.remove('active');
+    shoppingCart.classList.remove('active');
+    loginForm.classList.remove('active');
+}
+
+window.onscroll = () =>{
+    searchForm.classList.remove('active');
+    shoppingCart.classList.remove('active');
+    loginForm.classList.remove('active');
+    navbar.classList.remove('active');
+}
+
+var swiper = new Swiper(".product-slider", {
+    loop:true,
+    spaceBetween: 20,
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction: false,
+    },
+    centeredSlides: true,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1020: {
+        slidesPerView: 3,
+      },
+    },
+});
+
+var swiper = new Swiper(".review-slider", {
+    loop:true,
+    spaceBetween: 20,
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction: false,
+    },
+    centeredSlides: true,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1020: {
+        slidesPerView: 3,
+      },
+    },
+});
+</script>
+{% endblock %}

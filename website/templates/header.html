@@ -1,0 +1,476 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarRent</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+    
+    :root{
+    --claret:#7f1734;
+    --maroon:#800000;
+    --black:#130f40;
+    --light-color:#1C2833 ;
+    --dark:#E5E8E8;
+    --white:#fff;
+    --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+    --border:.2rem solid rgba(0,0,0,.1);
+    --outline:.1rem solid rgba(5, 223, 194, 0.849);
+    --outline-hover:.2rem solid var(--maroon);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body{
+    background:#fff;
+}
+
+section{
+    padding:2rem 9%;
+}
+
+.heading{
+    text-align: center;
+    padding:2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.5rem;
+    color:var(--white);
+}
+
+.heading span{
+    color: var(--maroon);
+    
+    display: inline-block;
+    padding:.5rem 3rem;
+    
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding:.8rem 3rem;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    border:.2rem solid var(--black);
+    color:var(--maroon);
+    cursor: pointer;
+    background: none;
+}
+
+.btn:hover{
+    background: var(--black);
+    color:#fff;
+}
+
+.header{
+    position: sticky;
+    top:0; left:0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2rem 9%;
+    background:#7f1734;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color:var(--white);
+}
+
+.header .logo i{
+    color:var(--white);
+}
+
+.header .navbar a{
+    font-size: 1.7rem;
+    margin:0 1rem;
+    color:var(--white);
+}
+
+.header .navbar a:hover{
+    color:var(--light-color);
+}
+
+.header .icons div{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: .5rem;
+    background: #eee;
+    color:var(--maroon);
+    font-size: 2rem;
+    margin-left: .3rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.header .icons div:hover{
+    background: var(--light-color);
+    color:#fff;
+}
+.header .login-form{
+    position: absolute;
+    top:110%; right: -110%;
+    width: 35rem;
+    box-shadow: var(--box-shadow);
+    padding:2rem;
+    border-radius: .5rem;
+    background: #fff;
+    text-align: center;
+}
+.header .login-form.active{
+    right: 2rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+.header .login-form .box{
+    width: 100%;
+    margin: .7rem 0;
+    background: #eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    text-transform: none;
+}
+.header .login-form p{
+    font-size: 1.4rem;
+    padding: .5rem 0;
+    color: var(--light-color);
+}
+.header .login-form p a {
+    color: var(--maroon);
+    text-decoration: underline;
+}
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(https://i.pinimg.com/originals/60/84/cb/6084cbf22f971691e760ebc24f3a6659.gif) no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+}
+.home .content{
+    text-align: center;
+    width: 60rem;
+}
+.home .content h3{
+    color: var(--white);
+    font-size: 3rem;
+    text-shadow: #666;
+}
+.home .content h3 span{
+    color:var(--maroon);
+}
+.home .content p{
+    color: var(--white);
+    font-size: 1.7rem;
+    padding: 1rem 0;
+    line-height: 1.8;
+}
+.features .box-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.features .box-container .box {
+  padding: 3rem 2rem;
+  background: #fff;
+  outline: var(--outline);
+  outline-offset: -1rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.features .box-container .box:hover {
+  background: var(--dark);
+  outline-offset: 0rem;
+}
+
+.features .box-container .box img {
+  margin: 1rem 0;
+  height: 15rem;
+}
+
+.features .box-container .box h3 {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: var(--black);
+}
+
+.features .box-container .box p {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: var(--light-color);
+  padding: 1rem 0;
+}
+
+
+.categories .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+    gap: 1.5rem;
+}
+.categories .box-container .box{
+    padding: 3rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+}
+
+.categories .box-container .box:hover{
+    background: var(--dark);
+    outline-offset: 0rem;
+}
+
+.categories .box-container .box img{
+    margin: 1rem 0;
+    width: 200px;
+    height: 100px;
+
+}
+.categories .box-container .box h3{
+    font-size: 2rem;
+    color:var(--black);
+    line-height: 1.8;
+}
+.categories .box-container .box p{
+    font-size: 1.7rem;
+    color:var(--light-color);
+    line-height: 1.8;
+    padding: 1rem;
+}
+.footer {
+    background: #7f1734;
+}
+.footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    color: var(--white);
+    padding: 1rem 0;
+}
+.footer .box-container .box h3 i{
+    color:var(--white);
+}
+.footer .box-container .box .links{
+    display: block;
+    font-size: 1.5rem;
+    color:var(--white);
+    padding:1rem 0;
+}
+.footer .box-container .box .links i{
+    color: var(--white);
+    padding-right: .5rem;
+}
+.footer .box-container .box .links:hover i{
+    padding-right: 2rem;
+}
+.footer .box-container .box p{
+    line-height: 1.8;
+    font-size: 1.5rem;
+    color:var(--white);
+    padding: 1rem 0;
+}
+.footer .box-container .box  .share a{
+    height: 4rem;
+    width: 4rem;
+    line-height: 4rem;
+    border-radius: .5rem;
+    font-size:2rem;
+    color: var(--maroon);
+    margin-right: .2rem;
+    background: #eee;
+    text-align: center;
+}
+.footer .box-container .box  .share a:hover{
+    background: var(--white);
+    color: #fff;
+}
+.footer .box-container .box .email{
+    width: 100%;
+    margin: .7rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background: #eee;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+}
+
+/* media queries  */
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+
+    .header{
+        padding:2rem;
+    }
+
+    section{
+        padding:2rem;
+    }
+
+}
+
+@media (max-width:768px){
+
+    #menu-btn{
+        display: inline-block;
+    }
+
+    .header .search-form{
+        width:90%;
+    }
+
+    .header .navbar{
+        position: absolute;
+        top:110%; right:-110%;
+        width:30rem;
+        box-shadow: var(--box-shadow);
+        border-radius: .5rem;
+        background: #fff;
+    }
+
+    .header .navbar.active{
+        right:2rem;
+        transition: .4s linear;
+    }
+
+    .header .navbar a{
+        font-size: 2rem;
+        margin:2rem 2.5rem;
+        display: block;
+    }
+
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+
+    .heading{
+        font-size: 2.5rem;
+    }
+
+    .footer{
+        text-align: center;
+    }
+
+    .footer .box-container .box .payment-img{
+        margin: 2rem auto;
+    }
+
+}
+    </style>
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header class="header">
+    {% if not user.is_authenticated %}
+    <a href="{% url 'index' %}" class="logo"> <i class="fas fa-car"></i> CarRent KPMB </a>
+    {% elif user.is_authenticated and user.is_admin %}
+    <a href="{% url 'adminpanel' %}" class="logo"> <i class="fas fa-user-tie"></i> Admin Dashboard </a>
+    {% elif user.is_authenticated and not user.is_admin %}
+    <a href="{% url 'index' %}" class="logo"> <i class="fas fa-car"></i> CarRent KPMB </a>
+    {% endif %}
+    <nav class="navbar">
+        {% if not user.is_authenticated %}
+            <a href="{% url 'index' %}">home</a>
+            <a href="{% url 'carlist' %}">view cars</a>
+        {% elif user.is_authenticated and user.is_carrenter %}
+            <a href="{% url 'index' %}">home</a>
+            <a href="{% url 'carlist' %}">view cars</a>
+            {% if booking_exists %}
+                <a href="{% url 'renterbookstatus' %}">Status</a>
+            {% else %}
+                <a href="{% url 'renterbookcar' %}">Booking</a>
+            {% endif %}
+            <a href="{% url 'renterfeedback' %}">feedback</a>
+        {% elif user.is_authenticated and user.is_carowner %}
+            <a href="{% url 'index' %}">home</a>
+            <a href="{% url 'carlist' %}">view cars</a>
+            <a href="{% url 'owneraddcar' %}">add car</a>
+        {% elif user.is_authenticated and user.is_admin %}
+            <a href="{% url 'adminrenterlist' %}">Renter</a>
+            <a href="{% url 'adminownerlist' %}">Owner</a>
+            <a href="{% url 'admincarlist' %}">Car</a>
+            <a href="{% url 'adminbookinglist' %}">Booking</a>
+            <a href="{% url 'adminfeedbacklist' %}">Feedback</a>
+        {% endif %}
+    </nav>
+
+    <div class="icons">
+        {% if not user.is_authenticated %}
+            <div onclick="redirectToRenter()" class="fas fa-user-edit" id="login-btn"></div>
+            <div onclick="redirectToOwner()" class="fas fa-user-cog" id="login-btn"></div>
+            <div onclick="redirectToAdminlogin()" class="fas fa-user-tie" id="admin-btn"></div>
+        {% elif user.is_authenticated %}
+            <div onclick="logout()" class="fa fa-sign-out" id="admin-btn"></div>   
+        {% endif %}
+    </div>
+    
+</header>
+
+<!-- header section ends -->
+
+{% block content %}
+{% endblock %}
+<script>
+    function redirectToRenter() {
+        window.location.href = "renterlogin";
+    }
+    function redirectToOwner() {
+        window.location.href = "ownerlogin";
+    }
+    function redirectToAdminlogin() {
+        window.location.href = "adminlogin";
+    }
+    function logout() {
+        window.location.href = "logout";
+    }
+</script>
+</body>
+</html>

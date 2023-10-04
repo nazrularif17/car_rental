@@ -1,0 +1,151 @@
+{% extends 'header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        html, body {
+      min-height: 100%;
+      }
+
+     body, div, form, input, select, textarea, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 36px;
+      color: #fff;
+      z-index: 2;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 10px;
+      width: 50%;
+      margin-left: 25%;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 20px 0 #333; 
+      }
+      .banner {
+      position: relative;
+      height: 150px;
+      background: linear-gradient(135deg, #ff2424, #7f1734);   
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.4); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      .form-container {
+        margin-left: 25%;
+        max-width: 50%;
+      }
+      input {
+      margin-bottom: 10px;
+      border: 1px solid #7f1734;
+      border-radius: 3px;
+      width: calc(100% - 10px);
+      padding: 3px;
+      }
+      .item input:hover{
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #333;
+      color: #333;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 120px;
+      padding: 5px;
+      border: none;
+      border-radius: 5px; 
+      background: #7f1734;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      border:3px solid #7f1734;
+      background-color: #fff;
+      color: #7f1734;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="testbox">
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="banner">
+          <h1>Car Detail Form</h1>
+        </div>
+        <div class="form-container">
+          <div class="item">
+            <p>Car Plate Number</p>
+            {{ carform.CarPlatenum }}
+          </div>
+          <div class="item">
+            <p>Car Image</p>
+            {{ carform.CarImg }}
+          </div>
+          <div class="item">
+            <p>Car Model</p>
+            {{ carform.CarModel }}
+          </div>
+          <div class="item">
+            <p>Number of Passenger</p>
+            {{ carform.NumofPassenger }}
+          </div>
+          <div class="item">
+            <p>Car Price</p>
+            {{ carform.CarPrice }}
+          </div>
+          <div class="btn-block">
+            <button type="submit" name="submit">SUBMIT</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+{% endblock %}
